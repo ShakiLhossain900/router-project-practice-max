@@ -6,10 +6,10 @@ import classes from './QuoteList.module.css';
 
 const QuoteList = (props) => {
 
-  const history = useHistory();
+  const history = useHistory();  //change the history
   const location = useLocation();
 
-  console.log(location);
+ new URLSearchParams();   //default javascript constructor funtion
   
   const changeSortinghandler =() =>{
      history.push('/quotes?sort=asc');   //here pushing the re rendering the components
