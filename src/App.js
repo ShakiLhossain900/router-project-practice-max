@@ -24,7 +24,7 @@ function App() {
           <NewQuote />
         </Route>
         <Route path="*">
-       <NotFound/>
+          <NotFound />
         </Route>
       </Switch>
     </Layout>
