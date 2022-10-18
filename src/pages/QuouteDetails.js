@@ -3,19 +3,22 @@ import { useParams, Route, Link, useRouteMatch } from "react-router-dom";
 
 import Comments from "../components/comments/Comments";
 import HighlightedQuote from "../components/quotes/HighlightedQuote";
+import useHttp from "../hooks/use-http";
+import { getSingleQuote } from "../lib/api";
 
-const DUMMY_QUOTES = [
-  { id: "q1", author: "shakil", text: "Learing React is Fun!" },
-  { id: "q2", author: "samia jannat", text: "Learing React is Great!" },
-];
+
+// const DUMMY_QUOTES = [
+//   { id: "q1", author: "shakil", text: "Learing React is Fun!" },
+//   { id: "q2", author: "samia jannat", text: "Learing React is Great!" },
+// ];
 
 const QuouteDetails = () => {
   const match = useRouteMatch(); //useRouteMatch use kore main path app change holeo amader sob jaygay change kora lage na jdoi amara useRouteMatch use
   const params = useParams();
 
-  console.log(match);
+const {sendRequest, status, error, data:loadedQuote}=useHttp(getSingleQuote, true);   //object disstructuring return by the hook
 
-  const quote = DUMMY_QUOTES.find((quote) => quote.id === params.quoteId);
+  // const quote = DUMMY_QUOTES.find((quote) => quote.id === params.quoteId); //we are no longer use dummy we start use dynamamic that's why we changes this
 
   if (!quote) {
     return <p>No quote found!!</p>;
