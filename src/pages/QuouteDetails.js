@@ -31,7 +31,7 @@ const QuouteDetails = () => {
         <div className="centered">
           {/* <Link className="btn--flat" to={`/quotes/${params.quoteId}/comments`}> */}
           {/* changes */}
-          <Link className="btn--flat" to={`${match.path}/comments`}>
+          <Link className="btn--flat" to={`${match.url}/comments`}>
             Load comments
           </Link>
         </div>
