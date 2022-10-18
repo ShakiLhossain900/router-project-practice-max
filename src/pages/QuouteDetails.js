@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment,useEffect } from "react";
 import { useParams, Route, Link, useRouteMatch } from "react-router-dom";
 
 import Comments from "../components/comments/Comments";
@@ -16,9 +16,20 @@ const QuouteDetails = () => {
   const match = useRouteMatch(); //useRouteMatch use kore main path app change holeo amader sob jaygay change kora lage na jdoi amara useRouteMatch use
   const params = useParams();
 
-const {sendRequest, status, error, data:loadedQuote}=useHttp(getSingleQuote, true);   //object disstructuring return by the hook
+  const {quoteId} = params;
 
+const {sendRequest, status, error, data:loadedQuote}=useHttp(getSingleQuote, true);   //object disstructuring return by the hook
   // const quote = DUMMY_QUOTES.find((quote) => quote.id === params.quoteId); //we are no longer use dummy we start use dynamamic that's why we changes this
+
+useEffect(() => {
+sendRequest(quoteId);
+},[sendRequest, quoteId])
+
+if(status === 'pending'){
+  
+}
+
+
 
   if (!quote) {
     return <p>No quote found!!</p>;
