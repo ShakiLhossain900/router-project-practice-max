@@ -3,11 +3,7 @@ import QuoteList from "../components/quotes/QuoteList";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 import useHttp from "../hooks/use-http";
 import { getAllQuotes } from "../lib/api";
-
-const DUMMY_QUOTES = [
-  { id: "q1", author: "shakil", text: "Learing React is Fun!" },
-  { id: "q2", author: "samia jannat", text: "Learing React is Great!" },
-];
+import NoQuotesFound from '../components/quotes/NoQuotesFound';
 
 const AllQuotes = () => {
   const {
@@ -33,8 +29,11 @@ const AllQuotes = () => {
     return <p className='centered focuses'>{error}</p>
   }
 
+  if (status === 'completed' && (!loadedQuotes || loadedQuotes.length === 0)){
+    return <NoQuotesFound/>
+  }
 
-  return <QuoteList quotes={DUMMY_QUOTES} />;
+  return <QuoteList quotes={loadedQuotes} />;
 };
 
 export default AllQuotes;
